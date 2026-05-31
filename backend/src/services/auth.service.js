@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../db/prisma.js';
 import { env } from '../config/env.js';
 
-export async function registerDoctor({ name, phone, email, password }) {
+export async function registerDoctor({ name, phone, password }) {
   const exists = await prisma.doctor.findUnique({ where: { phone } });
   if (exists) {
     throw new Error('Bu telefon raqam bilan shifokor mavjud');
@@ -11,7 +11,7 @@ export async function registerDoctor({ name, phone, email, password }) {
 
   const passwordHash = await bcrypt.hash(password, 10);
   const doctor = await prisma.doctor.create({
-    data: { name, phone, email, passwordHash }
+    data: { name, phone, passwordHash }
   });
 
   return createAuthResponse(doctor);

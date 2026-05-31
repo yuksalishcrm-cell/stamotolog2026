@@ -7,7 +7,6 @@ export const authRouter = express.Router();
 const registerSchema = z.object({
   name: z.string().min(2),
   phone: z.string().min(5),
-  email: z.string().email().optional().or(z.literal('')),
   password: z.string().min(4)
 });
 

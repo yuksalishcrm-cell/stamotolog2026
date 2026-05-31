@@ -5,7 +5,7 @@ import { useLang } from '../utils/i18n.js';
 export default function Login() {
   const [mode, setMode] = useState('login');
   const { lang, t, setLang } = useLang();
-  const [form, setForm] = useState({ name: '', phone: '+998', email: '', password: '' });
+  const [form, setForm] = useState({ name: '', phone: '+998', password: '' });
   const [error, setError] = useState('');
 
   async function submit(e) {
@@ -14,7 +14,12 @@ export default function Login() {
 
     try {
       const url = mode === 'login' ? '/auth/login' : '/auth/register';
-      const { data } = await api.post(url, form);
+      const payload =
+        mode === 'login'
+          ? { phone: form.phone, password: form.password }
+          : { name: form.name, phone: form.phone, password: form.password };
+
+      const { data } = await api.post(url, payload);
       localStorage.setItem('token', data.token);
       localStorage.setItem('doctor', JSON.stringify(data.doctor));
       window.location.href = '/';
@@ -66,14 +71,28 @@ export default function Login() {
           <div className="-mt-6 rounded-t-[2rem] bg-white px-6 pb-7 pt-8">
             <form onSubmit={submit} className="space-y-3">
               {mode === 'register' && (
-                <>
-                  <input className="input" placeholder={t.doctorName} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                  <input className="input" placeholder={t.email} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                </>
+                <input
+                  className="input"
+                  placeholder={t.doctorName}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
               )}
 
-              <input className="input" placeholder={t.phonePlaceholder} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-              <input className="input" placeholder={t.password} type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
+              <input
+                className="input"
+                placeholder={t.phonePlaceholder}
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+
+              <input
+                className="input"
+                placeholder={t.password}
+                type="password"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+              />
 
               {error && <div className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
 
