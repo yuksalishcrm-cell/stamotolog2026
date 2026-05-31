@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-teal-600;
+}
+
+.btn {
+  @apply rounded-2xl px-4 py-3 font-semibold transition;
+}
+
+.btn-primary {
+  @apply bg-teal-700 text-white hover:bg-teal-800;
+}
+
+.btn-light {
+  @apply bg-white text-slate-700 border border-slate-200;
+}
+
+.card {
+  @apply rounded-3xl bg-white p-4 shadow-sm border border-slate-100;
+}

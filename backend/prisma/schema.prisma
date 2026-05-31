@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum FollowupStatus {
+  pending
+  sent
+  confirmed
+  reschedule
+  declined
+  no_response
+  completed
+  failed
+}
+
+model Doctor {
+  id           Int        @id @default(autoincrement())
+  name         String
+  phone        String     @unique
+  email        String?    @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+  patients     Patient[]
+  visits       Visit[]
+  followups    Followup[]
+}
+
+model Patient {
+  id               Int        @id @default(autoincrement())
+  doctorId         Int
+  fullName         String
+  age              Int?
+  phone            String
+  telegramUsername String?
+  telegramChatId   String?
+  complaint        String?
+  createdAt        DateTime   @default(now())
+
+  doctor    Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  visits    Visit[]
+  followups Followup[]
+}
+
+model Visit {
+  id             Int        @id @default(autoincrement())
+  doctorId       Int
+  patientId      Int
+  complaint      String?
+  treatment      String?
+  recommendation String?
+  visitDate      DateTime   @default(now())
+  createdAt      DateTime   @default(now())
+
+  doctor    Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient   Patient    @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  followups Followup[]
+}
+
+model Followup {
+  id          Int             @id @default(autoincrement())
+  doctorId    Int
+  patientId   Int
+  visitId     Int?
+  scheduledAt DateTime
+  messageText String?
+  status      FollowupStatus  @default(pending)
+  sentAt      DateTime?
+  responseAt  DateTime?
+  createdAt   DateTime        @default(now())
+
+  doctor      Doctor          @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient     Patient         @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visit       Visit?          @relation(fields: [visitId], references: [id], onDelete: SetNull)
+  logs        TelegramLog[]
+}
+
+model TelegramLog {
+  id         Int      @id @default(autoincrement())
+  followupId Int?
+  chatId     String?
+  message    String
+  status     String
+  createdAt  DateTime @default(now())
+
+  followup Followup? @relation(fields: [followupId], references: [id], onDelete: SetNull)
+}

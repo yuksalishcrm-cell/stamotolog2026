@@ -1,0 +1,9 @@
+{
+  "name": "Stamotolog Follow-Up",
+  "short_name": "Stamotolog",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "icons": []
+}
