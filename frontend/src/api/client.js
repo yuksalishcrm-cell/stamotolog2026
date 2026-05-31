@@ -1,7 +1,7 @@
 ﻿import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://stamotolog2026-production.up.railway.app/api'
+  baseURL: import.meta.env.VITE_API_URL || 'https://stamotolog2026-production.up.railway.app/api'
 });
 
 api.interceptors.request.use((config) => {
