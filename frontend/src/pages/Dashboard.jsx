@@ -25,16 +25,21 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-5">
-      <div>
-        <h2 className="text-2xl font-bold">{t.dashboard}</h2>
-        <p className="text-sm text-slate-500">{t.dashboardSubtitle}</p>
+      <div className="page-hero">
+        <div className="relative z-10 flex items-start gap-4">
+          <div className="medical-badge">🦷</div>
+          <div>
+            <h2 className="text-2xl font-bold">{t.dashboard}</h2>
+            <p className="mt-1 text-sm text-white/85">{t.dashboardSubtitle}</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         {cards.map(([label, value]) => (
-          <div key={label} className="card">
-            <p className="text-sm text-slate-500">{label}</p>
-            <p className="mt-2 text-3xl font-bold text-teal-800">{value}</p>
+          <div key={label} className="stat-card">
+            <p className="ml-2 text-sm text-slate-500">{label}</p>
+            <p className="ml-2 mt-2 text-3xl font-bold text-teal-800">{value}</p>
           </div>
         ))}
       </div>

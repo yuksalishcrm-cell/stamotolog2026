@@ -17,19 +17,21 @@ export default function Patients() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <h2 className="text-2xl font-bold">{t.patients}</h2>
-          <p className="text-sm text-slate-500">{t.patientsSubtitle}</p>
+      <div className="card-soft">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <h2 className="section-title">{t.patients}</h2>
+            <p className="section-subtitle">{t.patientsSubtitle}</p>
+          </div>
+          <Link to="/patients/new" className="btn btn-primary whitespace-nowrap">{t.add}</Link>
         </div>
-        <Link to="/patients/new" className="btn btn-primary whitespace-nowrap">{t.add}</Link>
       </div>
 
       <input className="input" placeholder={t.searchPatient} value={q} onChange={(e) => setQ(e.target.value)} />
 
       <div className="space-y-3">
         {patients.map((p) => (
-          <Link to={`/patients/${p.id}`} key={p.id} className="card block">
+          <Link to={`/patients/${p.id}`} key={p.id} className="card block transition hover:-translate-y-[1px]">
             <p className="font-bold">{p.fullName}</p>
             <p className="text-sm text-slate-500">
               {p.phone} {p.telegramUsername ? `· @${p.telegramUsername}` : ''}
