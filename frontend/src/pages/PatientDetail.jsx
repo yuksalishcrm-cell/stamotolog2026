@@ -12,7 +12,7 @@ export default function PatientDetail() {
 
   if (!patient) return <p>Yuklanmoqda...</p>;
 
-  const botUsername = (import.meta.env.VITE_TELEGRAM_BOT_USERNAME || 'YOUR_BOT_USERNAME').replace('@', '');
+  const botUsername = (import.meta.env.VITE_TELEGRAM_BOT_USERNAME || 'bothruchunbot').replace('@', '');
   const botLink = `https://t.me/${botUsername}?start=patient_${patient.id}`;
 
   return (
