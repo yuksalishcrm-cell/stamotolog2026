@@ -1,4 +1,4 @@
-﻿import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { CalendarDays, Home, LogOut, Plus, Users } from 'lucide-react';
 import { useLang } from '../utils/i18n.js';
 
@@ -22,8 +22,8 @@ export default function AppLayout() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button onClick={() => setLang('uz')} className={`rounded-full px-2 py-1 text-lg ${lang === 'uz' ? 'bg-teal-100' : 'bg-slate-100'}`}>рџ‡єрџ‡ї</button>
-            <button onClick={() => setLang('ru')} className={`rounded-full px-2 py-1 text-lg ${lang === 'ru' ? 'bg-teal-100' : 'bg-slate-100'}`}>рџ‡·рџ‡є</button>
+            <button onClick={() => setLang('uz')} className={`rounded-full px-2 py-1 text-lg ${lang === 'uz' ? 'bg-teal-100' : 'bg-slate-100'}`}>🇺🇿</button>
+            <button onClick={() => setLang('ru')} className={`rounded-full px-2 py-1 text-lg ${lang === 'ru' ? 'bg-teal-100' : 'bg-slate-100'}`}>🇷🇺</button>
             <button onClick={logout} className="rounded-full bg-slate-100 p-3">
               <LogOut size={18} />
             </button>

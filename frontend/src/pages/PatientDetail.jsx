@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api/client.js';
 import { trStatus, useLang } from '../utils/i18n.js';
@@ -21,7 +21,7 @@ export default function PatientDetail() {
     <div className="space-y-5">
       <div className="card">
         <h2 className="text-2xl font-bold">{patient.fullName}</h2>
-        <p className="text-sm text-slate-500">{patient.phone} В· {patient.age || '-'} {t.yearsOld}</p>
+        <p className="text-sm text-slate-500">{patient.phone} · {patient.age || '-'} {t.yearsOld}</p>
         {patient.telegramUsername && <p className="text-sm text-teal-700">@{patient.telegramUsername}</p>}
         <p className="mt-3">{patient.complaint}</p>
       </div>

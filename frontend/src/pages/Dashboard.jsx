@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../api/client.js';
 import { trStatus, useLang } from '../utils/i18n.js';
 
@@ -47,7 +47,7 @@ export default function Dashboard() {
             <div key={item.id} className="rounded-2xl bg-slate-50 p-3">
               <p className="font-semibold">{item.patient.fullName}</p>
               <p className="text-sm text-slate-500">
-                {new Date(item.scheduledAt).toLocaleString()} В· {trStatus(item.status, t)}
+                {new Date(item.scheduledAt).toLocaleString()} · {trStatus(item.status, t)}
               </p>
             </div>
           ))}

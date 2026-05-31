@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../api/client.js';
 import { trStatus, useLang } from '../utils/i18n.js';
 

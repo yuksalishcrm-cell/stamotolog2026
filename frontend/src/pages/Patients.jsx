@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client.js';
 import { useLang } from '../utils/i18n.js';
@@ -32,7 +32,7 @@ export default function Patients() {
           <Link to={`/patients/${p.id}`} key={p.id} className="card block">
             <p className="font-bold">{p.fullName}</p>
             <p className="text-sm text-slate-500">
-              {p.phone} {p.telegramUsername ? `В· @${p.telegramUsername}` : ''}
+              {p.phone} {p.telegramUsername ? `· @${p.telegramUsername}` : ''}
             </p>
             <p className="mt-1 line-clamp-2 text-sm">{p.complaint}</p>
           </Link>

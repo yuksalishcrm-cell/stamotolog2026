@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { api } from '../api/client.js';
 import { useLang } from '../utils/i18n.js';
 
@@ -27,8 +27,8 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center px-4 py-8">
       <div className="w-full max-w-md rounded-[2rem] bg-white p-6 shadow-sm">
         <div className="mb-4 flex justify-end gap-2">
-          <button type="button" onClick={() => setLang('uz')} className={`rounded-full px-3 py-2 text-xl ${lang === 'uz' ? 'bg-teal-100' : 'bg-slate-100'}`}>рџ‡єрџ‡ї</button>
-          <button type="button" onClick={() => setLang('ru')} className={`rounded-full px-3 py-2 text-xl ${lang === 'ru' ? 'bg-teal-100' : 'bg-slate-100'}`}>рџ‡·рџ‡є</button>
+          <button type="button" onClick={() => setLang('uz')} className={`rounded-full px-3 py-2 text-xl ${lang === 'uz' ? 'bg-teal-100' : 'bg-slate-100'}`}>🇺🇿</button>
+          <button type="button" onClick={() => setLang('ru')} className={`rounded-full px-3 py-2 text-xl ${lang === 'ru' ? 'bg-teal-100' : 'bg-slate-100'}`}>🇷🇺</button>
         </div>
 
         <h1 className="text-2xl font-bold text-teal-800">{t.loginTitle}</h1>
